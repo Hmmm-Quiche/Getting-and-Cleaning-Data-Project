@@ -1,12 +1,13 @@
 
 
 
-# set working directory
+# before you run this script change path to point to directory
+# with run_analysis.R script and "UCI HAR Dataset" folder 
 setwd("~/Documents/JH_data_science/Getting_and_Cleaning_Data/course_project")
 
 # source od data:
 # https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip
-# files were downloaded and unzipped in UCI HAR Dataset subfolder
+# files were downloaded and unzipped in UCI HAR Dataset subfolder in working directory
 
 # script steps:
 
@@ -35,11 +36,6 @@ meanStdCols <- grep("mean\\(\\)|std\\(\\)", features[, 2])
 
 X <- X[, meanStdCols]
 
-names(X) <- features[meanStdCols, 2]
-names(X) <- gsub("\\(|\\)|-", "", names(X))
-names(X) <- tolower(names(X))  
-
-
 # 3. Uses descriptive activity names to name the activities in the data set
 
 activity_labels <- read.table("UCI HAR Dataset/activity_labels.txt")
@@ -47,14 +43,21 @@ activity_labels[, 2] <- tolower(gsub("_", "", activity_labels[, 2]))
 
 Y[,1] <- activity_labels[Y[,1], 2]
 
-names(Y) <- "activity"
-
 # 4. Appropriately labels the data set with descriptive variable names. 
+
+names(X) <- features[meanStdCols, 2]
+names(X) <- gsub("\\(|\\)|-", "", names(X))  # remove (, ) and - from column names
+names(X) <- tolower(names(X))  # lowercase column names
+
+names(Y) <- "activity"
 
 names(subject) <- "subject"
 
+
+# combine datasets
 cleandata<- cbind(subject, Y, X)
 
+# write dataset to file
 write.table(cleandata, "clean_data.txt")
 
 # 5. Creates a second, independent tidy data set with the average of each 
@@ -65,8 +68,6 @@ require(reshape2)
 cleandataMelt <- melt(cleandata, id.vars=c("subject", "activity"), measure.vars=names(cleandata)[-c(1:2)])
 
 cleandataMean <- dcast(cleandataMelt, activity + subject ~ variable, mean)
-
-rm(cleandataMelt)
 
 write.table(cleandataMean, "clean_data_mean.txt")
 

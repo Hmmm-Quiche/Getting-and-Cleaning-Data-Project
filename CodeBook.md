@@ -30,10 +30,10 @@ Steps performed in cleaning of data:
 
 #### Example of original and tidy data names
 
- | Original data             | Tidy data             | 
- |---------------------------|-----------------------|
- |`tBodyAcc-mean()-X`        | `tbodyaccmeanx`       |
- |`tBodyGyroJerkMag-std()`   | `tbodygyrojerkmagstd` |
+ | Original data               | Tidy data             | 
+ | --------------------------- | --------------------- |
+ | tBodyAcc-mean()-X           | tbodyaccmeanx         |
+ | tBodyGyroJerkMag-std()      | tbodygyrojerkmagstd   |
 
 
 3. use descriptive activity names to name the activities in the data set
