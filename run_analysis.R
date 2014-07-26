@@ -5,22 +5,22 @@ setwd("~/Documents/JH_data_science/Getting_and_Cleaning_Data/course_project")
 
 # source od data:
 # https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip
-# files were downloaded and unzipped in UCI HAR Dataset subfolder in working directory
+# files were downloaded and unzipped in UCI_HAR_Dataset subfolder in working directory
 
 # script steps:
 
 # 1. Merges the training and the test sets to create one data set.
 
-train <- read.table("UCI HAR Dataset/train/X_train.txt")
-test <- read.table("UCI HAR Dataset/test/X_test.txt")
+train <- read.table("UCI_HAR_Dataset/train/X_train.txt")
+test <- read.table("UCI_HAR_Dataset/test/X_test.txt")
 X <- rbind(train, test)
 
-train <- read.table("UCI HAR Dataset/train/y_train.txt")
-test <- read.table("UCI HAR Dataset/test/y_test.txt")
+train <- read.table("UCI_HAR_Dataset/train/y_train.txt")
+test <- read.table("UCI_HAR_Dataset/test/y_test.txt")
 Y <- rbind(train, test)
 
-train <- read.table("UCI HAR Dataset/train/subject_train.txt")
-test <- read.table("UCI HAR Dataset/test/subject_test.txt")
+train <- read.table("UCI_HAR_Dataset/train/subject_train.txt")
+test <- read.table("UCI_HAR_Dataset/test/subject_test.txt")
 subject <- rbind(train, test)
 
 #remove temp variables
@@ -29,14 +29,14 @@ rm(test)
 
 # 2. Extracts only the measurements on the mean and standard deviation for each measurement.
 
-features <- read.table("UCI HAR Dataset/features.txt")
+features <- read.table("UCI_HAR_Dataset/features.txt")
 meanStdCols <- grep("mean\\(\\)|std\\(\\)", features[, 2])
 
 X <- X[, meanStdCols]
 
 # 3. Uses descriptive activity names to name the activities in the data set
 
-activity_labels <- read.table("UCI HAR Dataset/activity_labels.txt")
+activity_labels <- read.table("UCI_HAR_Dataset/activity_labels.txt")
 activity_labels[, 2] <- tolower(gsub("_", "", activity_labels[, 2]))
 
 Y[,1] <- activity_labels[Y[,1], 2]
