@@ -1,6 +1,4 @@
 
-
-
 # before you run this script change path to point to directory
 # with run_analysis.R script and "UCI HAR Dataset" folder 
 setwd("~/Documents/JH_data_science/Getting_and_Cleaning_Data/course_project")
@@ -53,7 +51,6 @@ names(Y) <- "activity"
 
 names(subject) <- "subject"
 
-
 # combine datasets
 cleandata<- cbind(subject, Y, X)
 
@@ -69,5 +66,6 @@ cleandataMelt <- melt(cleandata, id.vars=c("subject", "activity"), measure.vars=
 
 cleandataMean <- dcast(cleandataMelt, activity + subject ~ variable, mean)
 
+# write dataset to file
 write.table(cleandataMean, "clean_data_mean.txt")
 
