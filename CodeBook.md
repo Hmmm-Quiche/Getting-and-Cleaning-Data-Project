@@ -26,16 +26,33 @@ Steps performed in cleaning of data:
   * read the list of all features from *features.txt* into `features` variable
   * use features list to filter mean and standard measurements in `X` (66 measures)
   * change variable names in  `X` using  `features` variable
-  *  remove (, ) and - from variable names and lowercase then
+  * remove (, ) and - from variable names and lowercase them
 
-#### Sample of renamed variables compared to original variable name
+#### Example of original and tidy data names
 
- Raw data                  | Tidy data 
- --------------------------|--------------
- `tBodyAcc-mean()-X`       | `tbodyaccmeanx`
- `tBodyGyroJerkMag-std()`  | `tbodygyrojerkmagstd`
-
-
-3
+ | Original data             | Tidy data             | 
+ |---------------------------|-----------------------|
+ |`tBodyAcc-mean()-X`        | `tbodyaccmeanx`       |
+ |`tBodyGyroJerkMag-std()`   | `tbodygyrojerkmagstd` |
 
 
+3. use descriptive activity names to name the activities in the data set
+  * read activity names from  *activity_labels.txt* into `activity_labels` variable
+  * remove _ from activity names lowercase them
+  * replace activity numbers with appropriate activity names in `Y`
+
+4. Appropriately labels the data set with descriptive variable names
+  * change variable names in  `X` using  `features` variable
+  * remove (, ) and - from variable names and lowercase them
+  * change column name in `Y` to "activity"
+  * change column name in `subject` to "subject"
+
+5. Combine and save dataset
+  * combine `X`, `Y` and `subject` into one dataset `cleandata`
+  * save that dataset to *clean_data.txt* in working directory
+
+6. Calculate second clean dataset 
+  * for each activity and each subject calculate average value for each measurement and save the value in `cleandataMean` dataset
+  * save that dataset to *clean_data_mean.txt* in working directory
+  
+  
