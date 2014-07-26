@@ -18,7 +18,7 @@ This script explains how to successfully run_analysis.R script
 * run script with `source("run_analysis.R")` command in RStudio
 * script reads data from "UCI HAR Dataset" and produces two datasets:
   
-1. clean_data.txt         --  10299 x 68 data set with mean and standard deviation measurements
-2. clean_data_mean.txt    --  180 x 68 data set with avarage values for each activity and each subject of mean and standard deviation measurements 
+1. **clean_data.txt**         --  10299 x 68 data set with mean and standard deviation measurements
+2. **clean_data_mean.txt**    --  180 x 68 data set with avarage values for each activity and each subject of mean and standard deviation measurements 
 
-* you can use  `data <- read.table("clean_data_mean.txt.txt") to read the latter.
+* you can use  `data <- read.table("clean_data_mean.txt.txt")` to read the latter.
